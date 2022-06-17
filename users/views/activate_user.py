@@ -1,19 +1,12 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from rest_framework import generics
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from users.models import User
-from users.serializers.register import RegisterSerializer
 from users.tokens import AccountActivationTokenGenerator
-
-
-class RegisterUserAPIView(generics.CreateAPIView):
-    permission_classes = [AllowAny]
-    serializer_class = RegisterSerializer
 
 
 class ActivateUserAPIView(APIView):
