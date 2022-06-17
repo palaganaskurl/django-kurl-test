@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
 from django.db import models
@@ -8,7 +9,6 @@ from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 
-from kurl_django_test.settings import ACTIVATION_URL
 from users.managers import CustomUserManager
 from users.tokens import AccountActivationTokenGenerator
 
@@ -26,16 +26,12 @@ class User(AbstractBaseUser):
     objects = CustomUserManager()
 
     def email_user(self):
-        import logging
         email_html = render_to_string('activate_email.html', {
             'email': self.email,
-            'domain': ACTIVATION_URL,
+            'domain': settings.ACTIVATION_URL,
             'uid': urlsafe_base64_encode(force_bytes(self.pk)),
             'token': AccountActivationTokenGenerator().make_token(self),
         })
-        logging.warning(f'{email_html}')
-        logging.warning(f'{AccountActivationTokenGenerator().make_token(self)}')
-        logging.warning(f'{urlsafe_base64_encode(force_bytes(self.email))}')
         plain_message = strip_tags(email_html)
 
         send_mail(
