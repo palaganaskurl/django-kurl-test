@@ -9,6 +9,8 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-oauth-toolkit = "*"
+six = "*"
+django-environ = "*"
 
 [dev-packages]
 

@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from users.views import RegisterUserAPIView
+from users.views import RegisterUserAPIView, ActivateUserAPIView
 
 urlpatterns = [
     path('register/', RegisterUserAPIView.as_view(), name='register'),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    # path('api-auth/', include('rest_framework.urls'))  # TODO: Check this to remove
+    path(
+        'activate/<slug:uidb64>/<slug:token>/',
+        ActivateUserAPIView.as_view(), name='activate_user'
+    ),
 ]
