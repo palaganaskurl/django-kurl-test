@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from users.views import RegisterUserAPIView, ActivateUserAPIView
+from users.views.activate_user import ActivateUserAPIView
+from users.views.register import RegisterUserAPIView
 
 urlpatterns = [
     path('register/', RegisterUserAPIView.as_view(), name='register'),
