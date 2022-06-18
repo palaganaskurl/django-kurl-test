@@ -20,7 +20,6 @@ from users.views.activate_user import ActivateUserAPIView
 from users.views.login import LoginAPIView
 from users.views.register import RegisterUserAPIView
 from users.views.user import UserViewSet
-from users.views.user_list import UserListViewSet
 
 urlpatterns = [
     path('login/', LoginAPIView.as_view(), name='login'),
@@ -31,7 +30,7 @@ urlpatterns = [
         ActivateUserAPIView.as_view(),
         name='activate_user',
     ),
-    path('users/', UserListViewSet.as_view({'get': 'list'}), name='user_list'),
+    path('users/', UserViewSet.as_view({'get': 'list'}), name='user_list'),
     path(
         'user/<int:pk>',
         UserViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update'}),

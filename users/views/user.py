@@ -29,7 +29,7 @@ class UserViewSet(viewsets.GenericViewSet):
     def get_permissions(self):
         permission_classes = []
 
-        if self.action == 'retrieve':
+        if self.action in ['retrieve', 'list']:
             if self.request.headers.get('Authorization'):
                 permission_classes = [IsAuthenticated, TokenHasReadWriteScope]
         elif self.action == 'partial_update':
@@ -51,6 +51,20 @@ class UserViewSet(viewsets.GenericViewSet):
             serializer = UserSerializer(user)
         else:
             serializer = UnauthenticatedUserSerializer(user)
+
+        return Response(serializer.data)
+
+    # noinspection PyUnusedLocal
+    def list(self, request, pk=None):
+        # Original implementation was ReadOnlyModelViewSet for this
+        #  but my understanding changed that list users also
+        #  can be accessed without token.
+        queryset = User.objects.all()
+
+        if self.get_authenticate_header(self.request):
+            serializer = UserSerializer(queryset, many=True)
+        else:
+            serializer = UnauthenticatedUserSerializer(queryset, many=True)
 
         return Response(serializer.data)
 
