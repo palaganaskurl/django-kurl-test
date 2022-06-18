@@ -28,5 +28,8 @@ urlpatterns = [
         ActivateUserAPIView.as_view(), name='activate_user'
     ),
     path('users/', UserListViewSet.as_view({'get': 'list'}), name='user_list'),
-    path('user/<int:pk>', UserViewSet.as_view({'get': 'retrieve'}), name='user_detail'),
+    path('user/<int:pk>', UserViewSet.as_view({
+        'get': 'retrieve',
+        'patch': 'partial_update'
+    }), name='user_detail'),
 ]
