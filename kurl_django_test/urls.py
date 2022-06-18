@@ -16,11 +16,13 @@ Including another URLconf
 from django.urls import path, include
 
 from users.views.activate_user import ActivateUserAPIView
+from users.views.login import LoginAPIView
 from users.views.register import RegisterUserAPIView
 from users.views.user import UserViewSet
 from users.views.user_list import UserListViewSet
 
 urlpatterns = [
+    path('login/', LoginAPIView.as_view(), name='login'),
     path('register/', RegisterUserAPIView.as_view(), name='register'),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path(
