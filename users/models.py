@@ -8,6 +8,7 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
+
 from users.managers import CustomUserManager
 from users.tokens import AccountActivationTokenGenerator
 

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.urls import include
 from django.urls import path
+
 from users.views.activate_user import ActivateUserAPIView
 from users.views.login import LoginAPIView
 from users.views.register import RegisterUserAPIView
