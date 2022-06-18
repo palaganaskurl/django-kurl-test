@@ -2,8 +2,13 @@
 
 ## Setup
 
+### With docker
+- Run ` docker-compose -f docker-compose.local.yml up -d --build`
+
 ### Without docker
-- `pipenv install --user`
+- Install `pipenv`
+- Run `pip install pipenv`
+- Run `pipenv install --user`
 
 ### Environment Variables
 
