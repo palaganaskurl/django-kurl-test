@@ -16,6 +16,7 @@ django-cors-headers = "*"
 flake8 = "*"
 black = "*"
 pre-commit = "*"
+flake8-import-order = "*"
 
 [requires]
 python_version = "3.9"
