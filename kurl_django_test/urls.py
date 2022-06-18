@@ -17,6 +17,8 @@ from django.urls import path, include
 
 from users.views.activate_user import ActivateUserAPIView
 from users.views.register import RegisterUserAPIView
+from users.views.user import UserViewSet
+from users.views.user_list import UserListViewSet
 
 urlpatterns = [
     path('register/', RegisterUserAPIView.as_view(), name='register'),
@@ -25,4 +27,6 @@ urlpatterns = [
         'activate/<slug:uidb64>/<slug:token>/',
         ActivateUserAPIView.as_view(), name='activate_user'
     ),
+    path('users/', UserListViewSet.as_view({'get': 'list'}), name='user_list'),
+    path('user/<int:pk>', UserViewSet.as_view({'get': 'retrieve'}), name='user_detail'),
 ]
