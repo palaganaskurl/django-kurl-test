@@ -31,3 +31,8 @@ Run using
 ```bash
 python manage.py runserver
 ```
+
+## Contributing
+1. Install dev dependencies from Pipfile.
+2. Run pre-commit install
+3. (Optional) Run pre-commit run --all-files upon pre-commit install

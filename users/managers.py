@@ -7,6 +7,7 @@ class CustomUserManager(BaseUserManager):
     Custom user model manager where email is the unique identifier
     for authentication instead of usernames.
     """
+
     def create(self, email, password, **extra_fields):
         if not email:
             raise ValueError(_('Users must have an email address'))

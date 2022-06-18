@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, include
-
+from django.urls import include
+from django.urls import path
 from users.views.activate_user import ActivateUserAPIView
 from users.views.login import LoginAPIView
 from users.views.register import RegisterUserAPIView
@@ -27,11 +27,13 @@ urlpatterns = [
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path(
         'activate/<slug:uidb64>/<slug:token>/',
-        ActivateUserAPIView.as_view(), name='activate_user'
+        ActivateUserAPIView.as_view(),
+        name='activate_user',
     ),
     path('users/', UserListViewSet.as_view({'get': 'list'}), name='user_list'),
-    path('user/<int:pk>', UserViewSet.as_view({
-        'get': 'retrieve',
-        'patch': 'partial_update'
-    }), name='user_detail'),
+    path(
+        'user/<int:pk>',
+        UserViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update'}),
+        name='user_detail',
+    ),
 ]

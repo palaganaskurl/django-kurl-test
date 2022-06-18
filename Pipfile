@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
-markdown = "*"
 django-filter = "*"
 django-oauth-toolkit = "*"
 six = "*"
@@ -14,6 +13,9 @@ django-environ = "*"
 django-cors-headers = "*"
 
 [dev-packages]
+flake8 = "*"
+black = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.9"
