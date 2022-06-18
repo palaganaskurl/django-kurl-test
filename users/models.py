@@ -1,3 +1,5 @@
+from threading import Thread
+
 from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.mail import send_mail
@@ -37,11 +39,15 @@ class User(AbstractBaseUser):
         )
         plain_message = strip_tags(email_html)
 
-        send_mail(
-            'Activate your account',
-            plain_message,
-            'no-reply@sample.com',
-            [self.email],
-            fail_silently=False,
-            html_message=email_html,
-        )
+        # Execute sending of email in background
+        #  to avoid response blocking of registration.
+        Thread(
+            target=send_mail,
+            args=[
+                'Activate your account',
+                plain_message,
+                'no-reply@sample.com',
+                [self.email],
+            ],
+            kwargs={'fail_silently': False, 'html_message': email_html},
+        ).start()
