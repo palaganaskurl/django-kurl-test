@@ -24,7 +24,7 @@ Run
 ```bash
 python manage.py createapplication confidential password --client-id {CLIENT_ID} --client-secret {CLIENT_SECRET}
 ```
-Replace {CLIENT_ID} and {CLIENT_SECRET} with your desired values.
+Replace `{CLIENT_ID}` and `{CLIENT_SECRET}` with your desired values.
 
 ### Run
 Run using
