@@ -29,9 +29,10 @@ class UserViewSet(viewsets.GenericViewSet):
     def get_permissions(self):
         permission_classes = []
 
-        if self.action in ['retrieve', 'list']:
-            if self.request.headers.get('Authorization'):
-                permission_classes = [IsAuthenticated, TokenHasReadWriteScope]
+        if self.action in ['retrieve', 'list'] and self.request.headers.get(
+            'Authorization'
+        ):
+            permission_classes = [IsAuthenticated, TokenHasReadWriteScope]
         elif self.action == 'partial_update':
             permission_classes = [
                 IsAuthenticated,
